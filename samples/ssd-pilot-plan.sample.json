@@ -1,0 +1,12 @@
+{
+  "Mode": "HyperVUbuntuVM",
+  "HostKeepsWindows": true,
+  "PilotStoragePath": "C:\\Users\\Q\\nas-pilot",
+  "VmMemoryGB": 8,
+  "VmDiskGB": 160,
+  "VmCpuCount": 6,
+  "HostHasSsd": true,
+  "AccessMode": "VPN",
+  "ExposePublicInternet": false,
+  "ProductionMigration": "RebuildOrAioRestore"
+}

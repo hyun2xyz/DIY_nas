@@ -1,0 +1,58 @@
+[
+  {
+    "Label": "POOL-01",
+    "IntendedRole": "RAIDZ2 pool",
+    "Manufacturer": "Western Digital",
+    "Model": "WD80EFZZ",
+    "Serial": "FILL-ME-POOL-01",
+    "CapacityTB": 8,
+    "RecordingTechnology": "CMR",
+    "SmartOverall": "Healthy",
+    "SmartLongTest": "Passed",
+    "ReallocatedSectors": 0,
+    "CurrentPendingSectors": 0,
+    "OfflineUncorrectableSectors": 0
+  },
+  {
+    "Label": "POOL-02",
+    "IntendedRole": "RAIDZ2 pool",
+    "Manufacturer": "Western Digital",
+    "Model": "WD80EFZZ",
+    "Serial": "FILL-ME-POOL-02",
+    "CapacityTB": 8,
+    "RecordingTechnology": "CMR",
+    "SmartOverall": "Healthy",
+    "SmartLongTest": "Passed",
+    "ReallocatedSectors": 0,
+    "CurrentPendingSectors": 0,
+    "OfflineUncorrectableSectors": 0
+  },
+  {
+    "Label": "POOL-03",
+    "IntendedRole": "RAIDZ2 pool",
+    "Manufacturer": "FILL-ME",
+    "Model": "FILL-ME",
+    "Serial": "FILL-ME-POOL-03",
+    "CapacityTB": 8,
+    "RecordingTechnology": "Unknown",
+    "SmartOverall": "Healthy",
+    "SmartLongTest": "Passed",
+    "ReallocatedSectors": 0,
+    "CurrentPendingSectors": 0,
+    "OfflineUncorrectableSectors": 0
+  },
+  {
+    "Label": "POOL-04",
+    "IntendedRole": "RAIDZ2 pool",
+    "Manufacturer": "FILL-ME",
+    "Model": "FILL-ME",
+    "Serial": "FILL-ME-POOL-04",
+    "CapacityTB": 8,
+    "RecordingTechnology": "Unknown",
+    "SmartOverall": "Healthy",
+    "SmartLongTest": "Passed",
+    "ReallocatedSectors": 0,
+    "CurrentPendingSectors": 0,
+    "OfflineUncorrectableSectors": 0
+  }
+]

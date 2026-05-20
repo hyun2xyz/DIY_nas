@@ -1,0 +1,75 @@
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+secrets/
+*.dpapi
+*.pem
+*.key
+*.pfx
+*.crt
+*.cer
+
+# Runtime data
+nas-pilot-data/
+data/
+logs/
+tmp/
+downloads/
+*.log
+*.pid
+*.iso
+
+# Backups and generated archives
+nas-cloud-backups/
+nas-restore-tests/
+*.tar.gz
+*.zip
+*.7z
+
+# Dependencies and build output
+node_modules/
+coverage/
+dist/
+.cache/
+
+# Local binaries and downloaded tools
+tools/cloudflared/
+cloudflared.exe
+
+# Local/private operational artifacts. Keep these on the operator machine only.
+samples/production-storage-plan-current.json
+docs/current-*.md
+docs/disk-inventory.md
+docs/morning-handoff.md
+docs/pilot-results.md
+docs/linux-vm-pilot-runbook.md
+docs/nas-drive-pipeline.md
+docs/production-storage-plan.md
+docs/zfs-mirror-migration-runbook.md
+docs/superpowers/
+docs/access-security.md
+docs/backup-restore.md
+docs/external-system-integration-plan.md
+docs/filebrowser-quantum-korean.md
+docs/nextcloud-backup-restore.md
+docs/nextcloud-install-notes.md
+docs/nextcloud-integration-gateway.md
+docs/ssd-pilot-and-hosting.md
+docs/windows-native-pilot-cloud.md
+docs/examples/cafe24-upload-example.js
+
+# Local scripts generated for one specific machine/disk set.
+scripts/vm/attach-current-8tb-hdds.ps1
+scripts/vm/safe-detach-all-8tb-hdds.ps1
+scripts/vm/restore-live-disks-after-dock-change.ps1
+scripts/backup/create-windows-backup-mirror.ps1
+scripts/backup/clear-backup-disk-metadata.ps1
+scripts/backup/copy-latest-nextcloud-backup*.ps1
+scripts/backup/invoke-nextcloud-backup-pipeline.ps1
+scripts/backup/test-nextcloud-backup-restore*.ps1
+scripts/linux/setup-zfs-mirrors.sh
+
+# OS/editor
+.DS_Store
+Thumbs.db

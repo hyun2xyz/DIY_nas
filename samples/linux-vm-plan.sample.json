@@ -1,0 +1,12 @@
+{
+  "Name": "nas-linux-pilot",
+  "VhdPath": "C:\\Users\\Q\\nas-vm\\nas-linux-pilot.vhdx",
+  "VhdSizeGB": 128,
+  "MemoryGB": 12,
+  "CpuCount": 8,
+  "SwitchName": "Default Switch",
+  "Generation": 2,
+  "EnableSecureBoot": false,
+  "RemoteAccess": "TailscaleAndSsh",
+  "FutureHddMode": "OfflinePhysicalDiskAttach"
+}

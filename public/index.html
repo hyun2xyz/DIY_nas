@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NAS Pilot Cloud</title>
+    <style>
+      :root {
+        font-family: "Segoe UI", system-ui, sans-serif;
+        color: #151515;
+        background: #f5f7f8;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      main {
+        max-width: 920px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+
+      header,
+      section {
+        background: #fff;
+        border: 1px solid #d9dee3;
+        border-radius: 8px;
+        padding: 16px;
+        margin-bottom: 14px;
+      }
+
+      h1,
+      h2 {
+        margin: 0 0 12px;
+      }
+
+      h1 {
+        font-size: 22px;
+      }
+
+      h2 {
+        font-size: 17px;
+      }
+
+      form,
+      .row {
+        display: grid;
+        gap: 10px;
+      }
+
+      .row {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      }
+
+      input,
+      select,
+      button {
+        font: inherit;
+        padding: 10px;
+        border: 1px solid #cbd2d9;
+        border-radius: 6px;
+      }
+
+      button {
+        border: 0;
+        background: #1f2937;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      button.secondary {
+        background: #e5e7eb;
+        color: #111827;
+      }
+
+      ul {
+        padding-left: 20px;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .status {
+        color: #4b5563;
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>NAS Pilot Cloud</h1>
+        <div class="status" id="status">로그인 필요</div>
+      </header>
+
+      <section id="login-section">
+        <h2>로그인</h2>
+        <form id="login-form">
+          <div class="row">
+            <input id="username" placeholder="username" autocomplete="username" />
+            <input id="password" placeholder="password" type="password" autocomplete="current-password" />
+          </div>
+          <button type="submit">로그인</button>
+        </form>
+      </section>
+
+      <section id="cloud-section" class="hidden">
+        <h2>파일</h2>
+        <form id="upload-form">
+          <div class="row">
+            <input id="folder" placeholder="folder, optional" />
+            <input id="file" type="file" />
+          </div>
+          <button type="submit">업로드</button>
+        </form>
+        <button class="secondary" id="refresh" type="button">새로고침</button>
+        <ul id="files"></ul>
+      </section>
+
+      <section id="admin-section" class="hidden">
+        <h2>관리자</h2>
+        <form id="user-form">
+          <div class="row">
+            <input id="new-username" placeholder="new username" />
+            <input id="new-password" placeholder="new password" type="password" />
+            <select id="new-role">
+              <option value="user">user</option>
+              <option value="admin">admin</option>
+            </select>
+          </div>
+          <button type="submit">사용자 생성</button>
+        </form>
+        <form id="token-form">
+          <div class="row">
+            <input id="token-name" placeholder="token name, e.g. cafe24" />
+            <input id="token-owner" placeholder="owner username" />
+          </div>
+          <button type="submit">API 토큰 생성</button>
+        </form>
+      </section>
+    </main>
+
+    <script>
+      const statusNode = document.querySelector("#status");
+      const loginSection = document.querySelector("#login-section");
+      const cloudSection = document.querySelector("#cloud-section");
+      const adminSection = document.querySelector("#admin-section");
+      const filesNode = document.querySelector("#files");
+      let currentUser = null;
+
+      document.querySelector("#login-form").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const data = await postJson("/api/login", {
+          username: document.querySelector("#username").value,
+          password: document.querySelector("#password").value,
+        });
+        currentUser = data.user;
+        setStatus(`${currentUser.username} 로그인됨`);
+        loginSection.classList.add("hidden");
+        cloudSection.classList.remove("hidden");
+        adminSection.classList.toggle("hidden", currentUser.role !== "admin");
+        await refreshFiles();
+      });
+
+      document.querySelector("#upload-form").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const input = document.querySelector("#file");
+        if (!input.files[0]) return;
+        const contentBase64 = await readFileBase64(input.files[0]);
+        await postJson("/api/files/upload", {
+          path: document.querySelector("#folder").value,
+          filename: input.files[0].name,
+          contentBase64,
+        });
+        input.value = "";
+        await refreshFiles();
+      });
+
+      document.querySelector("#refresh").addEventListener("click", refreshFiles);
+
+      document.querySelector("#user-form").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const data = await postJson("/api/admin/users", {
+          username: document.querySelector("#new-username").value,
+          password: document.querySelector("#new-password").value,
+          role: document.querySelector("#new-role").value,
+        });
+        setStatus(`사용자 생성: ${data.user.username}`);
+      });
+
+      document.querySelector("#token-form").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const data = await postJson("/api/admin/tokens", {
+          name: document.querySelector("#token-name").value,
+          owner: document.querySelector("#token-owner").value || currentUser.username,
+        });
+        setStatus(`API token, copy now:\n${data.token}`);
+      });
+
+      async function refreshFiles() {
+        const data = await getJson("/api/files");
+        filesNode.replaceChildren(
+          ...data.entries.map((entry) => {
+            const node = document.createElement("li");
+            if (entry.type === "file") {
+              const link = document.createElement("a");
+              link.href = `/api/files/download?path=${encodeURIComponent(entry.name)}`;
+              link.textContent = `${entry.name} (${entry.size} bytes)`;
+              node.append(link);
+            } else {
+              node.textContent = `[dir] ${entry.name}`;
+            }
+            return node;
+          }),
+        );
+      }
+
+      async function getJson(url) {
+        const response = await fetch(url);
+        return parseJson(response);
+      }
+
+      async function postJson(url, body) {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(body),
+        });
+        return parseJson(response);
+      }
+
+      async function parseJson(response) {
+        const data = await response.json();
+        if (!response.ok) {
+          throw new Error(data.message || data.error || "request failed");
+        }
+        return data;
+      }
+
+      function readFileBase64(file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(String(reader.result).split(",")[1]);
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+      }
+
+      function setStatus(text) {
+        statusNode.textContent = text;
+      }
+    </script>
+  </body>
+</html>

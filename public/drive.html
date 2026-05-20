@@ -1,0 +1,707 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NAS Drive</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f4f6f8;
+      --panel: #ffffff;
+      --text: #17202a;
+      --muted: #627084;
+      --line: #d7dee8;
+      --ink: #111827;
+      --nav: #172033;
+      --blue: #0b72b9;
+      --blue-dark: #075b94;
+      --red: #b42318;
+      --green: #16724a;
+      --shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      letter-spacing: 0;
+    }
+
+    button, input, select { font: inherit; }
+
+    button {
+      min-height: 40px;
+      border-radius: 8px;
+      border: 0;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    input, select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 11px 12px;
+      background: #fff;
+      color: var(--text);
+    }
+
+    .login {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .login-panel {
+      width: min(420px, 100%);
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 28px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      background: var(--blue);
+      color: #fff;
+      font-weight: 800;
+    }
+
+    .brand strong {
+      display: block;
+      font-size: 20px;
+    }
+
+    .brand span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    label {
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .login-error {
+      min-height: 22px;
+      color: var(--red);
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .primary {
+      background: var(--blue);
+      color: #fff;
+      padding: 10px 14px;
+    }
+
+    .primary:hover { background: var(--blue-dark); }
+
+    .secondary {
+      background: #e8eef6;
+      color: #1f2a3a;
+      padding: 10px 12px;
+    }
+
+    .ghost {
+      background: transparent;
+      color: #d8dee8;
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 9px 12px;
+    }
+
+    .app {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+    }
+
+    aside {
+      background: var(--nav);
+      color: #f8fafc;
+      padding: 22px 18px;
+    }
+
+    aside label { color: #dbe3ef; }
+
+    .nav-section {
+      display: grid;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .status {
+      min-height: 64px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.08);
+      color: #d8dee8;
+      padding: 12px;
+      font-size: 13px;
+      line-height: 1.45;
+      white-space: pre-wrap;
+    }
+
+    main {
+      min-width: 0;
+      padding: 24px;
+    }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 26px;
+      letter-spacing: 0;
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .pathbar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      background: #fbfcfe;
+    }
+
+    .crumb {
+      min-height: 28px;
+      border: 0;
+      border-radius: 4px;
+      background: transparent;
+      color: var(--blue);
+      padding: 2px;
+    }
+
+    .dropzone {
+      margin: 16px;
+      border: 2px dashed #b5c5d8;
+      border-radius: 8px;
+      padding: 22px;
+      text-align: center;
+      color: var(--muted);
+      background: #f9fbfe;
+    }
+
+    .dropzone.dragover {
+      border-color: var(--blue);
+      background: #edf7ff;
+      color: var(--blue-dark);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    th, td {
+      padding: 13px 16px;
+      border-top: 1px solid var(--line);
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    th {
+      color: var(--muted);
+      background: #fbfcfe;
+      font-size: 13px;
+    }
+
+    .name-cell {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .type-icon {
+      flex: 0 0 28px;
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      display: grid;
+      place-items: center;
+      background: #e8eef6;
+      font-size: 12px;
+      font-weight: 800;
+      color: #304155;
+    }
+
+    .name-button {
+      min-height: 28px;
+      border: 0;
+      border-radius: 4px;
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+      overflow: hidden;
+      text-align: left;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding: 0;
+    }
+
+    .row-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 6px;
+    }
+
+    .row-actions button {
+      min-height: 34px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: #1f2a3a;
+      padding: 7px 9px;
+    }
+
+    .empty {
+      padding: 40px 20px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .drawer {
+      margin-top: 16px;
+    }
+
+    .result {
+      background: #101827;
+      color: #dbeafe;
+      border-radius: 8px;
+      padding: 12px;
+      overflow: auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 13px;
+      white-space: pre-wrap;
+    }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 840px) {
+      .app { grid-template-columns: 1fr; }
+      aside, main { padding: 16px; }
+      .toolbar { align-items: flex-start; flex-direction: column; }
+      .actions { justify-content: flex-start; }
+      th:nth-child(2), td:nth-child(2), th:nth-child(3), td:nth-child(3) { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <section id="login" class="login">
+    <form id="loginForm" class="login-panel">
+      <div class="brand">
+        <div class="brand-mark">I</div>
+        <div>
+          <strong>NAS Drive</strong>
+          <span>Private cloud access</span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="password">Drive password</label>
+        <input id="password" type="password" autocomplete="current-password" autofocus>
+      </div>
+      <div id="loginError" class="login-error"></div>
+      <button class="primary" type="submit">Sign in</button>
+    </form>
+  </section>
+
+  <div id="app" class="app hidden">
+    <aside>
+      <div class="brand">
+        <div class="brand-mark">I</div>
+        <div>
+          <strong>NAS Drive</strong>
+          <span>Files gateway</span>
+        </div>
+      </div>
+
+      <div class="nav-section">
+        <div class="field">
+          <label for="root">Root</label>
+          <select id="root"></select>
+        </div>
+        <button id="logout" class="ghost" type="button">Sign out</button>
+        <div id="status" class="status">Checking session...</div>
+      </div>
+    </aside>
+
+    <main>
+      <div class="toolbar">
+        <h1 id="title">Drive</h1>
+        <div class="actions">
+          <button id="newFolder" class="secondary" type="button">New folder</button>
+          <button id="uploadButton" class="primary" type="button">Upload</button>
+          <button id="refresh" class="secondary" type="button">Refresh</button>
+          <input id="fileInput" class="hidden" type="file" multiple>
+        </div>
+      </div>
+
+      <section class="panel">
+        <div id="pathbar" class="pathbar"></div>
+        <div id="dropzone" class="dropzone">Drop files here or use Upload.</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th style="width:120px">Size</th>
+              <th style="width:220px">Modified</th>
+              <th style="width:190px; text-align:right">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="files"></tbody>
+        </table>
+        <div id="empty" class="empty hidden">No files in this folder.</div>
+      </section>
+
+      <section class="drawer">
+        <div id="result" class="result hidden"></div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const state = {
+      root: localStorage.getItem("nasDrive.root") || "",
+      path: "",
+      entries: [],
+      roots: [],
+    };
+
+    const el = {
+      login: document.getElementById("login"),
+      loginForm: document.getElementById("loginForm"),
+      password: document.getElementById("password"),
+      loginError: document.getElementById("loginError"),
+      app: document.getElementById("app"),
+      root: document.getElementById("root"),
+      logout: document.getElementById("logout"),
+      status: document.getElementById("status"),
+      title: document.getElementById("title"),
+      pathbar: document.getElementById("pathbar"),
+      files: document.getElementById("files"),
+      empty: document.getElementById("empty"),
+      dropzone: document.getElementById("dropzone"),
+      uploadButton: document.getElementById("uploadButton"),
+      fileInput: document.getElementById("fileInput"),
+      refresh: document.getElementById("refresh"),
+      newFolder: document.getElementById("newFolder"),
+      result: document.getElementById("result"),
+    };
+
+    el.loginForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      el.loginError.textContent = "";
+      try {
+        const response = await api("/drive/session", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ password: el.password.value }),
+        });
+        showApp(response.roots || []);
+        await loadDirectory("");
+      } catch (error) {
+        el.loginError.textContent = error.message;
+      }
+    });
+
+    el.root.addEventListener("change", () => {
+      state.root = el.root.value;
+      state.path = "";
+      localStorage.setItem("nasDrive.root", state.root);
+      renderPathbar();
+      renderEntries([]);
+      loadDirectory("");
+    });
+
+    el.logout.addEventListener("click", async () => {
+      await api("/drive/session", { method: "DELETE" });
+      state.path = "";
+      state.entries = [];
+      el.app.classList.add("hidden");
+      el.login.classList.remove("hidden");
+      el.password.value = "";
+      el.password.focus();
+    });
+
+    el.refresh.addEventListener("click", () => loadDirectory(state.path));
+    el.uploadButton.addEventListener("click", () => el.fileInput.click());
+    el.fileInput.addEventListener("change", async () => {
+      await uploadFiles([...el.fileInput.files]);
+      el.fileInput.value = "";
+    });
+    el.newFolder.addEventListener("click", createFolder);
+
+    for (const eventName of ["dragenter", "dragover"]) {
+      el.dropzone.addEventListener(eventName, (event) => {
+        event.preventDefault();
+        el.dropzone.classList.add("dragover");
+      });
+    }
+    for (const eventName of ["dragleave", "drop"]) {
+      el.dropzone.addEventListener(eventName, (event) => {
+        event.preventDefault();
+        el.dropzone.classList.remove("dragover");
+      });
+    }
+    el.dropzone.addEventListener("drop", (event) => uploadFiles([...event.dataTransfer.files]));
+
+    checkSession();
+
+    async function checkSession() {
+      const session = await api("/drive/session");
+      if (!session.authenticated) {
+        el.login.classList.remove("hidden");
+        el.app.classList.add("hidden");
+        return;
+      }
+      showApp(session.roots || []);
+      await loadDirectory(state.path);
+    }
+
+    function showApp(roots) {
+      state.roots = roots;
+      if (!state.roots.includes(state.root)) state.root = state.roots[0] || "";
+      el.root.replaceChildren(...state.roots.map((root) => {
+        const option = document.createElement("option");
+        option.value = root;
+        option.textContent = root;
+        return option;
+      }));
+      el.root.value = state.root;
+      localStorage.setItem("nasDrive.root", state.root);
+      el.login.classList.add("hidden");
+      el.app.classList.remove("hidden");
+      renderPathbar();
+    }
+
+    async function loadDirectory(path) {
+      if (!state.root) return setStatus("No configured roots.", true);
+      setStatus("Loading files...");
+      const query = new URLSearchParams({ root: state.root, path });
+      const response = await api(`/drive/api/list?${query}`);
+      state.path = response.path || "";
+      state.entries = response.entries || [];
+      renderPathbar();
+      renderEntries(state.entries);
+      setStatus(`Connected to ${state.root}${state.path ? `/${state.path}` : ""}.`);
+    }
+
+    async function createFolder() {
+      const name = prompt("Folder name");
+      if (!name) return;
+      const path = joinPath(state.path, name);
+      await api("/drive/api/directory", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ root: state.root, path }),
+      });
+      setResult(`Created folder: ${path}`);
+      await loadDirectory(state.path);
+    }
+
+    async function uploadFiles(files) {
+      if (!files.length) return;
+      setStatus(`Uploading ${files.length} file(s)...`);
+      const results = [];
+      for (const file of files) {
+        const body = new FormData();
+        body.set("root", state.root);
+        body.set("documentPath", state.path);
+        body.set("targetDirectory", state.path);
+        body.set("metadata", JSON.stringify({ source: "nas-drive" }));
+        body.set("file", file, file.name);
+        results.push(await api("/drive/api/upload", {
+          method: "POST",
+          body,
+        }));
+      }
+      setResult(formatUploadResults(results));
+      await loadDirectory(state.path);
+    }
+
+    function renderPathbar() {
+      el.title.textContent = state.root || "Drive";
+      const parts = state.path ? state.path.split("/") : [];
+      const nodes = [{ label: state.root || "Drive", path: "" }];
+      let current = "";
+      for (const part of parts) {
+        current = current ? `${current}/${part}` : part;
+        nodes.push({ label: part, path: current });
+      }
+      el.pathbar.replaceChildren(...nodes.flatMap((node, index) => {
+        const button = document.createElement("button");
+        button.className = "crumb";
+        button.type = "button";
+        button.textContent = node.label;
+        button.addEventListener("click", () => loadDirectory(node.path));
+        return index === 0 ? [button] : [document.createTextNode("/"), button];
+      }));
+    }
+
+    function renderEntries(entries) {
+      el.files.replaceChildren();
+      el.empty.classList.toggle("hidden", entries.length > 0);
+      for (const entry of entries) {
+        const row = document.createElement("tr");
+        const nameCell = document.createElement("td");
+        const nameWrap = document.createElement("div");
+        nameWrap.className = "name-cell";
+        const icon = document.createElement("span");
+        icon.className = "type-icon";
+        icon.textContent = entry.type === "directory" ? "DIR" : "FILE";
+        const nameButton = document.createElement("button");
+        nameButton.className = "name-button";
+        nameButton.type = "button";
+        nameButton.textContent = entry.name;
+        nameButton.title = entry.name;
+        nameButton.addEventListener("click", () => {
+          if (entry.type === "directory") loadDirectory(joinPath(state.path, entry.name));
+          else window.open(downloadUrl(entry), "_blank", "noopener");
+        });
+        nameWrap.append(icon, nameButton);
+        nameCell.append(nameWrap);
+
+        const sizeCell = document.createElement("td");
+        sizeCell.textContent = entry.type === "directory" ? "-" : formatBytes(entry.size || 0);
+        const modifiedCell = document.createElement("td");
+        modifiedCell.textContent = entry.modifiedAt ? new Date(entry.modifiedAt).toLocaleString() : "-";
+        const actionsCell = document.createElement("td");
+        const actions = document.createElement("div");
+        actions.className = "row-actions";
+        if (entry.type === "directory") {
+          actions.append(actionButton("Open", () => loadDirectory(joinPath(state.path, entry.name))));
+        } else {
+          actions.append(
+            actionButton("Open", () => window.open(downloadUrl(entry), "_blank", "noopener")),
+            actionButton("Copy URL", () => copyText(downloadUrl(entry, true))),
+          );
+        }
+        actions.append(actionButton("Copy path", () => copyText(joinPath(state.path, entry.name))));
+        actionsCell.append(actions);
+        row.append(nameCell, sizeCell, modifiedCell, actionsCell);
+        el.files.append(row);
+      }
+    }
+
+    function actionButton(label, handler) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.textContent = label;
+      button.addEventListener("click", handler);
+      return button;
+    }
+
+    function downloadUrl(entry, absolute = false) {
+      const path = joinPath(state.path, entry.name);
+      const url = `/files/download?root=${encodeURIComponent(state.root)}&path=${encodeURIComponent(path)}`;
+      return absolute ? new URL(url, location.origin).toString() : url;
+    }
+
+    function joinPath(base, name) {
+      return [base, name].filter(Boolean).join("/").replace(/\/+/g, "/");
+    }
+
+    async function api(path, options = {}) {
+      const response = await fetch(path, { credentials: "same-origin", ...options });
+      const text = await response.text();
+      const body = text ? JSON.parse(text) : {};
+      if (!response.ok) {
+        if (response.status === 401 && path !== "/drive/session") {
+          el.app.classList.add("hidden");
+          el.login.classList.remove("hidden");
+        }
+        throw new Error(body.message || body.error || `HTTP ${response.status}`);
+      }
+      return body;
+    }
+
+    function setStatus(message, isError = false) {
+      el.status.textContent = message;
+      el.status.style.color = isError ? "#fecaca" : "#d8dee8";
+    }
+
+    function setResult(value) {
+      el.result.textContent = value;
+      el.result.classList.remove("hidden");
+    }
+
+    async function copyText(value) {
+      await navigator.clipboard.writeText(value);
+      setStatus("Copied to clipboard.");
+    }
+
+    function formatUploadResults(results) {
+      return results.map((item) => {
+        const fullUrl = new URL(item.downloadUrl, location.origin).toString();
+        const name = item.path.split("/").pop();
+        const markdownLink = `[${name}](${fullUrl})`;
+        const htmlLink = `<a href="${fullUrl}">${name}</a>`;
+        return [
+          `Uploaded: ${item.path}`,
+          `URL: ${fullUrl}`,
+          `Markdown: ${markdownLink}`,
+          `HTML: ${htmlLink}`,
+        ].join("\n");
+      }).join("\n\n");
+    }
+
+    function formatBytes(value) {
+      if (!value) return "0 B";
+      const units = ["B", "KB", "MB", "GB", "TB"];
+      const index = Math.min(Math.floor(Math.log(value) / Math.log(1024)), units.length - 1);
+      return `${(value / Math.pow(1024, index)).toFixed(index === 0 ? 0 : 1)} ${units[index]}`;
+    }
+
+    window.addEventListener("unhandledrejection", (event) => {
+      setStatus(event.reason?.message || String(event.reason), true);
+    });
+  </script>
+</body>
+</html>
