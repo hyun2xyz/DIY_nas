@@ -1,13 +1,21 @@
-```text
- ____ ___ __   __       _   _    _    ____
-|  _ \_ _|\ \ / /      | \ | |  / \  / ___|
-| | | | |  \ V / _____ |  \| | / _ \ \___ \
-| |_| | |   | ||_____|| |\  |/ ___ \ ___) |
-|____/___|  |_|       |_| \_/_/   \_\____/
-```
+<table>
+  <tr>
+    <td bgcolor="#fff3b0">
+      <pre>
+
+   ____ ___ __   __       _   _    _    ____
+  |  _ \_ _|\ \ / /      | \ | |  / \  / ___|
+  | | | | |  \ V / _____ |  \| | / _ \ \___ \
+  | |_| | |   | ||_____|| |\  |/ ___ \ ___) |
+  |____/___|  |_|       |_| \_/_/   \_\____/
+
+      </pre>
+    </td>
+  </tr>
+</table>
 
 <p align="center">
-  <img src="public/diy-nas-line-art.svg" alt="DIY_nas line art: a laptop connected to a home server" width="780">
+  <img src="public/diynas.jpg" alt="DIY_nas line art: a laptop connected to a home server" width="780">
 </p>
 
 DIY_nas is a sanitized open-source template for building a self-hosted NAS-style web drive on a Windows PC without replacing Windows.
