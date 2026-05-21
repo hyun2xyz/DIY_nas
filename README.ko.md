@@ -2,6 +2,8 @@
   <img src="public/diynas.jpg" alt="DIY_nas 라인 아트: 노트북과 홈 서버가 연결된 그림" width="780">
 </p>
 
+DIY_nas는 Windows를 지우지 않고 그대로 유지한 상태에서, Windows PC 안에 Linux 기반 NAS 스타일 웹 드라이브를 구성하는 공개용 템플릿입니다. 개인 환경 정보, 실제 도메인, 실제 IP, 비밀번호, 토큰, 디스크 시리얼은 포함하지 않습니다.
+
 English documentation: [README.md](README.md)
 
 ## 작업노트
@@ -32,7 +34,7 @@ NAS에 대해 조금 공부해보니, 리눅스 기반의 NAS용 OS가 구동되
 
 읽어주셔서 감사합니다. 아주 많이 행복하세요.
 
-DIY_nas는 Windows를 지우지 않고 그대로 유지한 상태에서, Windows PC 안에 Linux 기반 NAS 스타일 웹 드라이브를 구성하는 공개용 템플릿입니다. 개인 환경 정보, 실제 도메인, 실제 IP, 비밀번호, 토큰, 디스크 시리얼은 포함하지 않습니다.
+
 
 ## 준비물!
 
