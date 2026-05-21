@@ -4,6 +4,47 @@ DIY_nas is a sanitized open-source template for building a self-hosted NAS-style
 
 Korean documentation: [README.ko.md](README.ko.md)
 
+## Prerequisites
+
+Use this section as the pre-install checklist. Detailed operating rules for future agents are kept in [AGENT_GUIDE.md](AGENT_GUIDE.md), so this README only lists the baseline requirements.
+
+```text
+Required accounts
+- GitHub account, if you want to publish or fork this template
+- Optional Cloudflare account and domain, if you want a public HTTPS URL
+- Optional Tailscale account, if you want private access between your own devices
+
+Required Windows host
+- Windows 10/11 Pro, Enterprise, or Education is recommended because Hyper-V is required
+- Administrator access to PowerShell and Hyper-V Manager
+- Virtualization enabled in BIOS/UEFI
+- Wired Ethernet is recommended for stable NAS access
+
+Recommended host specs
+- CPU: 4 cores minimum, 8+ cores recommended
+- Memory: 16 GB minimum for a pilot, 32 GB+ recommended for heavier use
+- SSD free space: 128 GB+ recommended for the Ubuntu VM virtual disk, logs, and tools
+- Keep Windows installed on the SSD; do not install the NAS OS directly over Windows
+
+Required storage
+- SSD for the Windows host OS and the Ubuntu VM virtual disk
+- At least 2 HDDs for a mirrored live NAS pool
+- 4 HDDs recommended for live mirror + backup mirror
+- NAS-grade HDDs are recommended for live data
+- USB/SATA docking station, HBA, or enclosure that exposes each disk individually
+- A UPS is strongly recommended if the machine will serve real data
+
+Required software
+- Git for Windows
+- Node.js LTS and npm
+- Ubuntu Server LTS ISO
+- Hyper-V
+- Docker Engine and Docker Compose plugin inside Ubuntu
+- ZFS utilities inside Ubuntu
+- FileBrowser Quantum Docker image
+- Optional cloudflared for Cloudflare Tunnel
+```
+
 ## What This Project Builds
 
 ```text
