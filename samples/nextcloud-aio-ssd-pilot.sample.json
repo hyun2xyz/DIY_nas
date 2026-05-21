@@ -1,0 +1,13 @@
+{
+  "Domain": "cloud.home.arpa",
+  "DataDir": "/srv/nextcloud-pilot/data",
+  "BackupDir": "/srv/nextcloud-pilot/backups",
+  "ApachePort": 11000,
+  "AioInterfacePort": 8080,
+  "UseReverseProxy": true,
+  "UseVpnOnly": true,
+  "ExposePublicInternet": false,
+  "EnableOffice": false,
+  "EnableClamAv": false,
+  "EnableFullTextSearch": false
+}

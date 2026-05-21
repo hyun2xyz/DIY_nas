@@ -1,0 +1,13 @@
+{
+  "Domain": "cloud.home.arpa",
+  "DataDir": "/mnt/tank/nextcloud-data",
+  "BackupDir": "/mnt/tank/nextcloud-db-backups",
+  "ApachePort": 11000,
+  "AioInterfacePort": 8080,
+  "UseReverseProxy": true,
+  "UseVpnOnly": true,
+  "ExposePublicInternet": false,
+  "EnableOffice": false,
+  "EnableClamAv": false,
+  "EnableFullTextSearch": false
+}

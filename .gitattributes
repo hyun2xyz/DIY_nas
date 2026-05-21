@@ -1,0 +1,8 @@
+# GitHub Linguist settings.
+# README.md is the default English landing page; README.ko.md is the Korean translation.
+# These attributes affect repository language statistics, not human-language selection.
+
+*.md linguist-documentation
+docs/** linguist-documentation
+public/** linguist-documentation
+samples/** linguist-documentation

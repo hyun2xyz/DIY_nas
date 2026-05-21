@@ -1,0 +1,10 @@
+{
+  "Name": "nas-candidate",
+  "OsName": "TrueNAS SCALE or Ubuntu Server 24.04 LTS",
+  "TotalMemoryGB": 64,
+  "HasSsdForApps": true,
+  "NetworkGbps": 2.5,
+  "SupportsVirtualization": true,
+  "IsDedicatedHost": true,
+  "HasUps": true
+}

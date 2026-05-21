@@ -1,0 +1,22 @@
+{
+  "replace-with-long-random-lms-token": {
+    "name": "Example LMS integration",
+    "root": "LMS",
+    "permissions": ["read", "write"]
+  },
+  "replace-with-long-random-publishing-token": {
+    "name": "Writing and GitHub Pages publishing",
+    "root": "Publishing",
+    "permissions": ["read", "write", "delete"]
+  },
+  "replace-with-long-random-cafe24-token": {
+    "name": "Cafe24 app",
+    "root": "Cafe24",
+    "permissions": ["read", "write"]
+  },
+  "replace-with-long-random-wiki-token": {
+    "name": "Wiki automation",
+    "root": "Wiki",
+    "permissions": ["read", "write"]
+  }
+}
