@@ -1,4 +1,14 @@
-# DIY_nas
+```text
+ ____ ___ __   __       _   _    _    ____
+|  _ \_ _|\ \ / /      | \ | |  / \  / ___|
+| | | | |  \ V / _____ |  \| | / _ \ \___ \
+| |_| | |   | ||_____|| |\  |/ ___ \ ___) |
+|____/___|  |_|       |_| \_/_/   \_\____/
+```
+
+<p align="center">
+  <img src="public/diy-nas-line-art.svg" alt="DIY_nas 라인 아트: 노트북과 홈 서버가 연결된 그림" width="780">
+</p>
 
 English documentation: [README.md](README.md)
 
