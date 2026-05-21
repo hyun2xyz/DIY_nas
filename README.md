@@ -1,19 +1,3 @@
-<table>
-  <tr>
-    <td bgcolor="#fff3b0">
-      <pre>
-
-   ____ ___ __   __       _   _    _    ____
-  |  _ \_ _|\ \ / /      | \ | |  / \  / ___|
-  | | | | |  \ V / _____ |  \| | / _ \ \___ \
-  | |_| | |   | ||_____|| |\  |/ ___ \ ___) |
-  |____/___|  |_|       |_| \_/_/   \_\____/
-
-      </pre>
-    </td>
-  </tr>
-</table>
-
 <p align="center">
   <img src="public/diynas.jpg" alt="DIY_nas line art: a laptop connected to a home server" width="780">
 </p>
