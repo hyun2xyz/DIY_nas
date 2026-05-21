@@ -33,7 +33,7 @@ If a change touches shell scripts, inspect the destructive path manually.
 
 - Keep README short and installation-focused.
 - Put explanations in `docs/`.
-- Update `agent.md` when architecture or operational decisions change.
+- Update `AGENT_GUIDE.md` when architecture or operational decisions change.
 - Add recovery notes when changing storage, backup, or tunnel behavior.
 
 ## Release Standard

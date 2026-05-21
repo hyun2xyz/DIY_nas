@@ -27,7 +27,7 @@ $skipPatterns = @(
     '^docs/disk-inventory\.md$',
     '^docs/linux-vm-pilot-runbook\.md$',
     '^docs/morning-handoff\.md$',
-    '^docs/nas-drive-pipeline\.md$',
+    '^docs/diy-nas-pipeline\.md$',
     '^docs/pilot-results\.md$',
     '^docs/production-storage-plan\.md$',
     '^docs/zfs-mirror-migration-runbook\.md$',

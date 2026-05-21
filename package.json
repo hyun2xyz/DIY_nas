@@ -1,7 +1,7 @@
 {
-  "name": "nas-drive-pipeline",
+  "name": "diy-nas",
   "version": "0.1.0",
-  "description": "Sanitized Windows, Hyper-V, Ubuntu, ZFS and web drive pipeline template for self-hosted NAS labs.",
+  "description": "Sanitized DIY_nas pipeline template for Windows, Hyper-V, Ubuntu, ZFS, FileBrowser Quantum, and optional gateway integration.",
   "license": "MIT",
   "type": "module",
   "scripts": {

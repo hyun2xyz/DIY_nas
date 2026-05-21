@@ -43,7 +43,7 @@
 .
 ├─ README.md
 ├─ AGENTS.md
-├─ agent.md
+├─ AGENT_GUIDE.md
 ├─ docs/
 ├─ scripts/
 │  ├─ linux/
