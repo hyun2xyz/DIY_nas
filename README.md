@@ -6,6 +6,38 @@ DIY_nas is a sanitized open-source template for building a self-hosted NAS-style
 
 Korean documentation: [README.ko.md](README.ko.md)
 
+## Work Note
+
+Hello, I’m Hyun.
+
+I study editorial design in Korea, and I research different pipelines using AI and share them with others. I love the sharing philosophy of the World Wide Web, HTML, humor, and writing. Beyond HTML, CSS, and JavaScript, it has only been about a month since I started studying development in earnest.
+
+I’d like to introduce my first open-source project, 〈DIY_nas〉.
+
+Since last year, I’ve been consistently running generative AI tutorial workshops for designers and creators. Recently, as I began to feel the importance of “recording” things more strongly, I started building 〈iyo_wiki〉, a wiki engine-based project that could be accessed by more people.
+
+In this space, I wanted to share my work process and thoughts, translate AI-related interviews, host small gatherings and open calls for projects among wiki users, and create a place where each person could build their own wiki page and practice sharing knowledge. I also wanted to build a VOD system for friends who live far away and cannot come to my workshop space in person.
+
+But once these ideas started to move toward actual implementation on the web, there were more limitations than I had expected. Running hosting, cloud services, and databases all on paid plans made the scale grow bigger and bigger, and building a high-spec NAS system from scratch was not exactly cheap either.
+
+As I studied a little about NAS, I learned that I would need hardware capable of running a Linux-based NAS OS. For stable operation, I would need at least a 4-bay system for RAID, and I would also have to buy NAS-grade HDDs separately.
+
+Then one day, I casually thought:
+
+“Couldn’t I just build this with the powerful desktop that’s been sitting unused in my studio?”
+
+That’s how it lightly began. Inspired by Andrej Karpathy’s idea of vibe coding, I carried out this project without writing a single line of code myself, using only natural language.
+
+I did set one rule for myself: whenever I encountered a word I didn’t know during the process, I wouldn’t just skip over it. I took the time to study and organize the concept and principle behind it. Because I needed to understand what I was actually doing.
+
+Since I had a few other projects running in parallel, the total working time was around ten days. If I had focused on it alone, I think it could have been done even faster.
+
+It is still in beta testing, but I’ve started by using it for wiki hosting, and I’m sharing the pipeline I built on GitHub in a way that is easy to understand.
+
+Feedback and suggestions for the project are always welcome.
+
+Thank you for reading. Please be very, very happy.
+
 ## Prerequisites
 
 Use this section as the pre-install checklist. Detailed operating rules for future agents are kept in [AGENT_GUIDE.md](AGENT_GUIDE.md), so this README only lists the baseline requirements.
