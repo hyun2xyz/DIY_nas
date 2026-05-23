@@ -7,7 +7,7 @@ DIY(Do it your self)_nas is a sanitized open-source template for building a self
 Korean documentation: [README.ko.md](README.ko.md)
 
 ## Work Note
-
+```text
 Hello, I’m Hyun.
 
 I study editorial design in Korea, and I research different pipelines using AI and share them with others. I love the sharing philosophy of the World Wide Web, HTML, humor, and writing. Beyond HTML, CSS, and JavaScript, it has only been about a month since I started studying development in earnest.
@@ -32,6 +32,7 @@ It is still in beta testing, but I’ve started by using it for wiki hosting, an
 
 Feedback and suggestions for the project are always welcome.
 Thank you for reading. Please be very, very happy.
+```
 
 ## Prerequisites
 
