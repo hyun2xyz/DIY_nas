@@ -2,7 +2,7 @@
   <img src="public/diynas.jpg" alt="DIY_nas line art: a laptop connected to a home server" width="780">
 </p>
 
-DIY(Do it your self)_nas is a sanitized open-source template for building a self-hosted NAS-style web drive on a Windows PC without replacing Windows.
+DIY(Do it your self)_nas is a sanitized open-source template for building a self-hosted NAS web drive on a Windows PC without replacing Windows.
 
 Korean documentation: [README.ko.md](README.ko.md)
 
