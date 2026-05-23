@@ -22,20 +22,15 @@ But once these ideas started to move toward actual implementation on the web, th
 
 As I studied a little about NAS, I learned that I would need hardware capable of running a Linux-based NAS OS. For stable operation, I would need at least a 4-bay system for RAID, and I would also have to buy NAS-grade HDDs separately.
 
-Then one day, I casually thought:
-
-“Couldn’t I just build this with the powerful desktop that’s been sitting unused in my studio?”
-
+Then one day, I casually thought “Couldn’t I just build this with the powerful desktop that’s been sitting unused in my studio?”
 That’s how it lightly began. Inspired by Andrej Karpathy’s idea of vibe coding, I carried out this project without writing a single line of code myself, using only natural language.
 
 I did set one rule for myself: whenever I encountered a word I didn’t know during the process, I wouldn’t just skip over it. I took the time to study and organize the concept and principle behind it. Because I needed to understand what I was actually doing.
 
 Since I had a few other projects running in parallel, the total working time was around ten days. If I had focused on it alone, I think it could have been done even faster.
-
 It is still in beta testing, but I’ve started by using it for wiki hosting, and I’m sharing the pipeline I built on GitHub in a way that is easy to understand.
 
 Feedback and suggestions for the project are always welcome.
-
 Thank you for reading. Please be very, very happy.
 
 ## Prerequisites
