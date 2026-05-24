@@ -20,15 +20,9 @@ In this space, I wanted to share my work process and thoughts, translate AI-rela
 
 But once these ideas started to move toward actual implementation on the web, there were more limitations than I had expected. Running hosting, cloud services, and databases all on paid plans made the scale grow bigger and bigger, and building a high-spec NAS system from scratch was not exactly cheap either.
 
-As I studied a little about NAS, I learned that I would need hardware capable of running a Linux-based NAS OS. For stable operation, I would need at least a 4-bay system for RAID, and I would also have to buy NAS-grade HDDs separately.
+After studying NAS a little, I realized that I’d need hardware capable of running a Linux-based OS, a 4-bay RAID system for stable operation, and NAS-specific HDDs as well. At that point, the cost starts snowballing pretty fast. Then a thought crossed my mind: “Couldn’t I just build one using the high-spec desktop sitting idle in the studio?” That’s how this project began, pretty casually. I proceeded entirely through natural language, using Andrej Karpathy’s “vibe coding” approach. But I set one major constraint for myself: whenever I came across a term I didn’t understand, I wouldn’t just gloss over it. I took the time to study the concept and the underlying principles, then organized what I learned. I needed to understand what I was actually doing.
 
-Then one day, I casually thought “Couldn’t I just build this with the powerful desktop that’s been sitting unused in my studio?”
-That’s how it lightly began. Inspired by Andrej Karpathy’s idea of vibe coding, I carried out this project without writing a single line of code myself, using only natural language.
-
-I did set one rule for myself: whenever I encountered a word I didn’t know during the process, I wouldn’t just skip over it. I took the time to study and organize the concept and principle behind it. Because I needed to understand what I was actually doing.
-
-Since I had a few other projects running in parallel, the total working time was around ten days. If I had focused on it alone, I think it could have been done even faster.
-It is still in beta testing, but I’ve started by using it for wiki hosting, and I’m sharing the pipeline I built on GitHub in a way that is easy to understand.
+Since I had a few other projects running in parallel, the total working time was about a week. If I had focused solely on this, I think it could have been done much faster. It’s still in the beta testing stage, but I’ve started testing it as a cloud system for uploads to the wiki, and I’m sharing the pipeline I built on GitHub in a way that’s easy to follow.
 
 Feedback and suggestions for the project are always welcome.
 Thank you for reading. Please be very, very happy.
